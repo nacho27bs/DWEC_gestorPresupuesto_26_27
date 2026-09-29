@@ -3,14 +3,22 @@
 // TODO: Variable global
 let presupuesto = 0;
 
-function actualizarPresupuesto() {
+function actualizarPresupuesto(valor) {
     // TODO
-    
+    if(typeof valor === `number` && !isNaN(valor) && valor >= 0) {
+        presupuesto = valor;
+    }
+    else{
+        console.error(`El valor del presupuesto debe ser un número mayor o igual a 0`);
+        valor = -1;
+    }
+    return valor;
 }
 
 function mostrarPresupuesto() {
     // TODO
-    alert(`El presupuesto actual es: ${presupuesto}`);
+    //alert(`Tu presupuesto actual es: ${presupuesto}`);
+    return `Tu presupuesto actual es: ${presupuesto}`;
 }
 
 function CrearGasto() {
