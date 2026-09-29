@@ -5,10 +5,12 @@ let presupuesto = 0;
 
 function actualizarPresupuesto() {
     // TODO
+    
 }
 
 function mostrarPresupuesto() {
     // TODO
+    alert(`El presupuesto actual es: ${presupuesto}`);
 }
 
 function CrearGasto() {
