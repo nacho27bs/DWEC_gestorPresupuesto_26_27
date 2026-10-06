@@ -27,6 +27,12 @@ function listarGastos() {
     return gastos;
 }
 
+function anyadirGasto(gasto) {
+    gasto.id = idGasto;
+    idGasto++;
+    gastos.push(gasto);
+}
+
 function CrearGasto(descripcion, valor) {
     // TODO
     this.descripcion = String(descripcion);
