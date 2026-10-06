@@ -36,6 +36,9 @@ function anyadirGasto(gasto) {
 function borrarGasto(id) {
     gastos = gastos.filter(gasto => gasto.id !== id);
 }
+function calcularTotalGastos() {
+    return gastos.reduce((total, gasto) => total + gasto.valor, 0);
+}
 
 function CrearGasto(descripcion, valor) {
     // TODO
