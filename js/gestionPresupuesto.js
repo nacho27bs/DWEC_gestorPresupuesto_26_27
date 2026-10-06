@@ -53,17 +53,16 @@ function CrearGasto(descripcion, valor,fecha, ...etiquetas) {
     this.etiquetas = [];
 
     this.mostrarGastoCompleto = function() {
-        let lineas = [
-            `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.`,
-            `Fecha: ${new Date(this.fecha).toLocaleString()}`,
-            `Etiquetas:`
-        ];
+
+        let texto = `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.\n`;
+        texto += `Fecha: ${new Date(this.fecha).toLocaleString()}\n`;
+        texto += `Etiquetas:`;
         
         for (let etiqueta of this.etiquetas) {
-            lineas.push(` - ${etiqueta}`);
+            texto += `\n- ${etiqueta}`;
         }
         
-        return lineas.join('\n');
+        return texto;
     };
     this.mostrarGasto = function() {
         return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
