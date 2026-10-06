@@ -62,7 +62,7 @@ function CrearGasto(descripcion, valor,fecha, ...etiquetas) {
             texto += `\n- ${etiqueta}`;
         }
         
-        return texto;
+        return texto + "\n";
     };
     this.mostrarGasto = function() {
         return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
