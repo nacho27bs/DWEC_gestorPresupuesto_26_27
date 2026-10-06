@@ -23,6 +23,9 @@ function mostrarPresupuesto() {
     //alert(`Tu presupuesto actual es de ${presupuesto}`);
     return `Tu presupuesto actual es de ${presupuesto} €`;
 }
+function listarGastos() {
+    return gastos;
+}
 
 function CrearGasto(descripcion, valor) {
     // TODO
