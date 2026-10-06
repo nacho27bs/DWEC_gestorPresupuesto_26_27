@@ -43,10 +43,28 @@ function calcularBalance() {
     return presupuesto - calcularTotalGastos();
 }
 
-function CrearGasto(descripcion, valor) {
+function CrearGasto(descripcion, valor,fecha, ...etiquetas) {
     // TODO
     this.descripcion = String(descripcion);
     this.valor = (typeof valor === 'number' && valor >= 0) ? valor : 0;
+
+    let fechaParsada = Date.parse(fecha);
+    this.fecha = !isNaN(fechaParsada) ? fechaParsada : Date.now();
+    this.etiquetas = [];
+
+    this.mostrarGastoCompleto = function() {
+        let lineas = [
+            `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €.`,
+            `Fecha: ${new Date(this.fecha).toLocaleString()}`,
+            `Etiquetas:`
+        ];
+        
+        for (let etiqueta of this.etiquetas) {
+            lineas.push(` - ${etiqueta}`);
+        }
+        
+        return lineas.join('\n');
+    };
     this.mostrarGasto = function() {
         return `Gasto correspondiente a ${this.descripcion} con valor ${this.valor} €`;
     };
@@ -58,13 +76,36 @@ function CrearGasto(descripcion, valor) {
             this.valor = nuevoValor;
         }
     };
+    this.anyadirEtiquetas = function(...nuevasEtiquetas) {
+        for (let etiqueta of nuevasEtiquetas) {
+            if (!this.etiquetas.includes(etiqueta)) {
+                this.etiquetas.push(etiqueta);
+            }
+        }
+    };
+    this.anyadirEtiquetas(...etiquetas);
+    this.borrarEtiquetas = function(...etiquetasAborrar) {
+        this.etiquetas = this.etiquetas.filter(etiqueta => !etiquetasAborrar.includes(etiqueta));
+    };
+
+    this.actualizarFecha = function(nuevaFecha) {
+        let parsed = Date.parse(nuevaFecha);
+        if (!isNaN(parsed)) {
+            this.fecha = parsed;
+        }
+    };
 }
 
 // NO MODIFICAR A PARTIR DE AQUÍ: exportación de funciones y objetos creados para poder ejecutar los tests.
 // Las funciones y objetos deben tener los nombres que se indican en el enunciado
 // Si al obtener el código de una práctica se genera un conflicto, por favor incluye todo el código que aparece aquí debajo
-export   {
+export {
     mostrarPresupuesto,
     actualizarPresupuesto,
-    CrearGasto
-}
+    CrearGasto,
+    listarGastos,
+    anyadirGasto,
+    borrarGasto,
+    calcularTotalGastos,
+    calcularBalance
+};
