@@ -33,6 +33,10 @@ function anyadirGasto(gasto) {
     gastos.push(gasto);
 }
 
+function borrarGasto(id) {
+    gastos = gastos.filter(gasto => gasto.id !== id);
+}
+
 function CrearGasto(descripcion, valor) {
     // TODO
     this.descripcion = String(descripcion);
